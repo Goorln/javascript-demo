@@ -4,8 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>生成随机颜色</title>
+    <style>
+      div {
+        height: 100px;
+        width: 100px;
+      }
+    </style>
   </head>
   <body>
+    <div></div>
     <script>
       // 需求：该函数接收一个布尔类型的参数,表示颜色是十六进制还是rgb格式
       function getRandomColor(flag) {
@@ -45,6 +52,9 @@
       // 调用函数
       console.log(getRandomColor(true));
       console.log(getRandomColor(false));
+
+      const div = document.querySelector("div");
+      div.style.backgroundColor = getRandomColor();
     </script>
   </body>
 </html>
