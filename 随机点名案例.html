@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      .box {
+        width: 600px;
+        margin: 50px auto;
+        display: flex;
+        font-size: 25px;
+        line-height: 40px;
+      }
+
+      .qs {
+        width: 450px;
+        height: 40px;
+        color: red;
+      }
+
+      .btns {
+        text-align: center;
+      }
+
+      .btns button {
+        width: 120px;
+        height: 35px;
+        margin: 0 50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>随机点名</h2>
+    <div class="box">
+      <span>名字是：</span>
+      <div class="qs">这里显示姓名</div>
+    </div>
+    <div class="btns">
+      <button class="start">开始</button>
+      <button class="end">结束</button>
+    </div>
+
+    <script>
+      // 数据数组
+      const arr = ["王一博", "肖战", "花城", "谢怜", "魏无羡", "含光君"];
+      // 随机号要全局变量
+      let random = 0;
+      // 定时器全局变量
+      let timer = 0;
+      // 获取显示名字的元素
+      const qs = document.querySelector(".qs");
+      // 获取开始按钮模块
+      const start = document.querySelector(".start");
+      // 开始按钮添加点击事件
+      start.addEventListener("click", function () {
+        // 定时器
+        timer = setInterval(function () {
+          // 随机生成一个数组下标
+          random = parseInt(Math.random() * arr.length);
+          // console.log(arr[random]);
+          qs.innerHTML = arr[random];
+        }, 50);
+        // 如果数组里面只有一个值了，就禁用开始和结束按钮
+        if (arr.length === 1) {
+          start.disabled = true;
+          end.disabled = true;
+        }
+      });
+      // 获取结束事件的按钮
+      const end = document.querySelector(".end");
+      end.addEventListener("click", function () {
+        // 清除定时器
+        clearInterval(timer);
+        // 结束了，可以删除当前抽取的那个数组元素
+        arr.splice(random, 1);
+        console.log(arr);
+      });
+    </script>
+  </body>
+</html>
